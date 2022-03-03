@@ -1,4 +1,4 @@
-# DateCalc
+# DateCalc MacOS App
 ## Purpose
 Date calculator/converter to:
 - [x] Convert between unix (epoch) time and a human readable timestamp.
