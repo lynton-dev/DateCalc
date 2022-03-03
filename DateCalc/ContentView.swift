@@ -19,7 +19,7 @@ struct ContentView: View {
             // Column 1
             VStack {
                 HStack {
-                    Text("Unix time")
+                    Text("Unix time:")
                     
                     TextField("Enter unix time", text: $unixTimeText)
                     .frame(width: 150)
@@ -30,10 +30,11 @@ struct ContentView: View {
                         Image(systemName: "clock.arrow.circlepath")
                     }
                     .help("Reset to current time")
-                        .padding(.trailing, 20)
+                    .padding(.leading, 5)
                 }
                 .padding(.bottom, 10)
                 
+                // Convert from unix time to human readable timestamp
                 Button {
                     self.date = Date(timeIntervalSince1970: Double(unixTimeText) ?? 0)
                     self.seconds = String(calendar.component(.second, from: date))
@@ -43,7 +44,7 @@ struct ContentView: View {
                 .help("Convert to human readable time")
             }
             .padding()
-            .frame(width: 350)
+            .frame(width: 400)
             
             HStack {
                 Divider()
@@ -54,7 +55,7 @@ struct ContentView: View {
             VStack {
                 HStack {
                     DatePicker(
-                            "Human time",
+                            "Human time:",
                             selection: $date,
                             displayedComponents: [.date, .hourAndMinute]
                     )
@@ -63,14 +64,24 @@ struct ContentView: View {
                     
                     TextField("", text: $seconds)
                     .onAppear() {
-                        self.seconds = String(calendar.component(.second, from: self.date))
+                        UpdateSecondsFromDate()
                     }
                     .frame(width: 25)
                     
                     Text("sec")
+                        .padding(.leading, -5)
+                    
+                    Button {
+                        ResetDate()
+                    } label: {
+                        Image(systemName: "clock.arrow.circlepath")
+                    }
+                    .help("Reset to current time")
+                    .padding(.leading, 5)
                 }
                 .padding(.bottom, 10)
             
+                // Convert from human readable timestamp to unix time
                 Button {
                     var components = DateComponents()
                     components.day = calendar.component(.day, from: self.date)
@@ -87,10 +98,20 @@ struct ContentView: View {
                 .help("Convert to unix time")
             }
             .padding()
-            .frame(width: 350)
+            .frame(width: 400)
             
         }
         .padding()
+    }
+    
+    func ResetDate() {
+        self.date = Date()
+        UpdateSecondsFromDate()
+    }
+    
+    func UpdateSecondsFromDate()
+    {
+        self.seconds = String(calendar.component(.second, from: self.date))
     }
 }
 
