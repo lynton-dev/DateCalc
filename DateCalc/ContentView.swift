@@ -106,17 +106,28 @@ struct ContentView: View {
                 }
                 .padding(.bottom, 10)
                 
-                // Select Time Zone
-                Picker("Time Zone", selection: $timeZoneSelection) {
-                    ForEach(self.timeZoneIdentifiers, id: \.self) {
-                        Text($0)
+                HStack {
+                    // Select Time Zone
+                    Picker("Time Zone", selection: $timeZoneSelection) {
+                        ForEach(self.timeZoneIdentifiers, id: \.self) {
+                            Text($0)
+                        }
+                    }.onChange(of: self.timeZoneSelection) { newValue in
+                        // Adjust date from previously selected time zone to the newly selected time zone
+                        self.date = self.date.convert(from: TimeZone(identifier: self.previousTimeZoneSelection)!, to: TimeZone(identifier: self.timeZoneSelection)!)
+                        
+                        // Store this as our new previous time zone selection
+                        self.previousTimeZoneSelection = self.timeZoneSelection
                     }
-                }.onChange(of: self.timeZoneSelection) { newValue in
-                    // Adjust date from previously selected time zone to the newly selected time zone
-                    self.date = self.date.convert(from: TimeZone(identifier: self.previousTimeZoneSelection)!, to: TimeZone(identifier: self.timeZoneSelection)!)
                     
-                    // Store this as our new previous time zone selection
-                    self.previousTimeZoneSelection = self.timeZoneSelection
+                    // Reset time zone button
+                    Button {
+                        ResetTimeZone()
+                    } label: {
+                        Image(systemName: "clock.arrow.circlepath")
+                    }
+                    .help("Reset to local time zone")
+                    .padding(.leading, 5)
                 }
                 .padding(.bottom, 10)
             
@@ -138,6 +149,10 @@ struct ContentView: View {
     func ResetDate() {
         self.date = Date()
         UpdateSecondsFromDate()
+    }
+    
+    func ResetTimeZone() {
+        self.timeZoneSelection = TimeZone.current.identifier
     }
     
     func ConvertUnixTimeToHumanDate() {
