@@ -11,6 +11,11 @@
 		4FB7E49227D0878B00A99FDE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7E49127D0878B00A99FDE /* ContentView.swift */; };
 		4FB7E49427D0878C00A99FDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FB7E49327D0878C00A99FDE /* Assets.xcassets */; };
 		4FB7E49727D0878C00A99FDE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FB7E49627D0878C00A99FDE /* Preview Assets.xcassets */; };
+		4FB7E49F27D29C7700A99FDE /* ResetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7E49E27D29C7700A99FDE /* ResetButton.swift */; };
+		4FB7E4A127D29E3500A99FDE /* UnixTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7E4A027D29E3500A99FDE /* UnixTimeView.swift */; };
+		4FB7E4A327D2B4D100A99FDE /* DateTimeZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7E4A227D2B4D100A99FDE /* DateTimeZoneView.swift */; };
+		4FB7E4A527D2CE0800A99FDE /* TimeZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7E4A427D2CE0800A99FDE /* TimeZoneView.swift */; };
+		4FB7E4A727D2CF1200A99FDE /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7E4A627D2CF1200A99FDE /* DateView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +25,11 @@
 		4FB7E49327D0878C00A99FDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FB7E49627D0878C00A99FDE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4FB7E49827D0878C00A99FDE /* DateCalc.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DateCalc.entitlements; sourceTree = "<group>"; };
+		4FB7E49E27D29C7700A99FDE /* ResetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetButton.swift; sourceTree = "<group>"; };
+		4FB7E4A027D29E3500A99FDE /* UnixTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnixTimeView.swift; sourceTree = "<group>"; };
+		4FB7E4A227D2B4D100A99FDE /* DateTimeZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeZoneView.swift; sourceTree = "<group>"; };
+		4FB7E4A427D2CE0800A99FDE /* TimeZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZoneView.swift; sourceTree = "<group>"; };
+		4FB7E4A627D2CF1200A99FDE /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +67,11 @@
 				4FB7E49327D0878C00A99FDE /* Assets.xcassets */,
 				4FB7E49827D0878C00A99FDE /* DateCalc.entitlements */,
 				4FB7E49527D0878C00A99FDE /* Preview Content */,
+				4FB7E49E27D29C7700A99FDE /* ResetButton.swift */,
+				4FB7E4A027D29E3500A99FDE /* UnixTimeView.swift */,
+				4FB7E4A227D2B4D100A99FDE /* DateTimeZoneView.swift */,
+				4FB7E4A427D2CE0800A99FDE /* TimeZoneView.swift */,
+				4FB7E4A627D2CF1200A99FDE /* DateView.swift */,
 			);
 			path = DateCalc;
 			sourceTree = "<group>";
@@ -140,7 +155,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FB7E49227D0878B00A99FDE /* ContentView.swift in Sources */,
+				4FB7E4A527D2CE0800A99FDE /* TimeZoneView.swift in Sources */,
+				4FB7E4A727D2CF1200A99FDE /* DateView.swift in Sources */,
+				4FB7E4A327D2B4D100A99FDE /* DateTimeZoneView.swift in Sources */,
+				4FB7E49F27D29C7700A99FDE /* ResetButton.swift in Sources */,
 				4FB7E49027D0878B00A99FDE /* DateCalcApp.swift in Sources */,
+				4FB7E4A127D29E3500A99FDE /* UnixTimeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
