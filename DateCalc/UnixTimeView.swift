@@ -12,9 +12,9 @@ struct UnixTimeView: View {
 
     var body: some View {
         HStack {
-            Text("UNIX timestamp:")
+            Text("Unix epoch time:")
             
-            TextField("Enter UNIX timestamp", text: $unixTime.unixTimeText)
+            TextField("Enter Unix timestamp", text: $unixTime.unixTimeText)
             .frame(width: 150)
             
             // Reset unix time button

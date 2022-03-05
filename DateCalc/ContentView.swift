@@ -8,48 +8,64 @@
 import SwiftUI
 
 struct ContentView: View {
+    // Unix epoch time converter
     @ObservedObject private var unixTime = UnixTime(unixTimeText: GetUnixTimeString())
     @ObservedObject private var humanDate = DateObservableObject()
+    
+    // Time Zone converter
     @ObservedObject private var inputDate = DateObservableObject()
+    @ObservedObject private var outputDate = DateObservableObject()
+    @State private var convertedDate = ""
+    
+    @State private var tabSelection = UserDefaults.standard.integer(forKey: "tabSelection")
+    private let columnWidth = 350.0
     
     var body: some View {
-        ZStack(alignment: .top) {
+        
+        TabView(selection: $tabSelection) {
             
-            HStack {
-                Divider()
-            }
-            .padding(EdgeInsets(top: 25, leading: 50, bottom: 25, trailing: 50))
-            //.frame(height: 400)
-
-            VStack {
+            // Tab 1 - Unix epoch time converter
+            ZStack(alignment: .center) {
                 
+                HStack {
+                    Divider()
+                }.padding()
+                
+                VStack {
+                    
+                    // Button to convert from unix time to human readable timestamp
+                    Button {
+                        ConvertUnixTimeToHumanDate()
+                    } label: {
+                        Image(systemName: "arrow.right.circle.fill")
+                    }
+                    .help("Convert to human readable date")
+                
+                    // Button to convert from human readable timestamp to unix time
+                    Button {
+                        ConvertHumanDateToUnixTime()
+                    } label: {
+                        Image(systemName: "arrow.left.circle.fill")
+                    }
+                    .padding(.top, 10)
+                    .help("Convert to unix time")
+                    
+                }
+                    
                 HStack {
                     
                     // Column 1
                     VStack {
-                        Text("UNIX Epoch Time")
-                            .font(.title2)
-                            .padding(.bottom, 20)
                         
                         UnixTimeView(unixTime: self.unixTime)
                         .padding(.bottom, 10)
                         
-                        // Button to convert from unix time to human readable timestamp
-                        Button {
-                            ConvertUnixTimeToHumanDate()
-                        } label: {
-                            Image(systemName: "arrow.right.circle.fill")
-                        }
-                        .help("Convert to human readable date")
                     }
-                    .padding()
-                    .frame(width: 425)
+                    .frame(minWidth: columnWidth)
+                    .padding(EdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 75))
                     
                     // Column 2
                     VStack {
-                        Text("Human Readable Date")
-                            .font(.title2)
-                            .padding(.bottom, 20)
                         
                         DateTimeZoneView(dateObservableObject: self.humanDate)
                         .onAppear() {
@@ -57,41 +73,83 @@ struct ContentView: View {
                             ConvertUnixTimeToHumanDate()
                         }
                         
-                        // Button to convert from human readable timestamp to unix time
-                        Button {
-                            ConvertHumanDateToUnixTime()
-                        } label: {
-                            Image(systemName: "arrow.left.circle.fill")
-                        }
-                        .padding(.top, 10)
-                        .help("Convert to unix time")
                     }
-                    .padding()
-                    .frame(width: 425)
+                    .frame(minWidth: columnWidth)
+                    .padding(EdgeInsets(top: 0, leading: 75, bottom: 0, trailing: 25))
                     
                 }
+                
+            }
+            .tabItem {
+                Text("Unix Epoch Time Converter")
+            }
+            .tag(1)
             
+            // Tab 2 - Time Zone converter
+            ZStack(alignment: .center) {
+                
+                HStack {
+                    Divider()
+                }.padding()
+                
+                VStack {
+                    
+                    Button {
+                        ConvertTimeZone()
+                    } label: {
+                        Image(systemName: "arrow.right.circle.fill")
+                    }
+                    .help("Convert to human readable date")
+                    
+                }
+                
                 HStack {
                     
                     // Column 1
                     VStack {
-                        //DateView(dateObservableObject: inputDate)
+                        
+                        DateTimeZoneView(dateObservableObject: self.inputDate)
+                        
                     }
-                    .padding()
-                    .frame(width: 425)
+                    .frame(minWidth: columnWidth)
+                    .padding(EdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 75))
                     
                     // Column 2
                     VStack {
+                        TimeZoneView(dateObservableObject: self.outputDate)
+                            .onChange(of: self.outputDate.timeZoneSelection) { newValue in
+                                // When this time zone is changed then convert the time zone
+                                ConvertTimeZone()
+                        }
                         
+                        Text(self.convertedDate)
+                            .textSelection(.enabled)
+                            .font(.title2)
+                            .padding(.top, 20)
                     }
-                    .padding()
-                    .frame(width: 425)
+                    .frame(minWidth: columnWidth)
+                    .padding(EdgeInsets(top: 0, leading: 75, bottom: 0, trailing: 25))
+                    
                 }
+            }
+            .tabItem {
+                Text("Time Zone Converter")
+            }
+            .tag(2)
+            
+            // Tab 3 - Date Calculator
+            ZStack(alignment: .center) {
                 
             }
-            .padding()
+            .tabItem {
+                Text("Date Calculator")
+            }
+            .tag(3)
             
         }
+        .onChange(of: self.tabSelection, perform: { index in
+            UserDefaults.standard.set(self.tabSelection, forKey: "tabSelection")
+        })
     }
     
     func ConvertUnixTimeToHumanDate() {
@@ -112,6 +170,16 @@ struct ContentView: View {
         calendar.timeZone = TimeZone(identifier: self.humanDate.timeZoneSelection) ?? TimeZone.current
         self.humanDate.date = calendar.date(from: components) ?? Date()
         self.unixTime.unixTimeText = GetUnixTimeString(dateParam: self.humanDate.date, fromTimeZone: TimeZone(identifier: self.humanDate.timeZoneSelection) ?? TimeZone.current)
+    }
+        
+    func ConvertTimeZone() {
+        self.outputDate.date = self.inputDate.date.convert(from: TimeZone(identifier: self.inputDate.timeZoneSelection) ?? TimeZone.current, to: TimeZone(identifier: self.outputDate.timeZoneSelection) ?? TimeZone.current)
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd hh:mm:ss a"
+        formatter.amSymbol = "AM"
+        formatter.pmSymbol = "PM"
+        self.convertedDate = formatter.string(from: self.outputDate.date)
     }
 }
 

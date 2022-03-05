@@ -18,7 +18,8 @@ struct TimeZoneView: View {
                 ForEach(self.timeZoneIdentifiers, id: \.self) {
                     Text($0)
                 }
-            }   // Note, the optional square bracket part here was added to set a "pTimeZoneSelection" capture to the previous time zone value
+            }.frame(maxWidth: 275)
+            // Note, the optional square bracket part here was added to set a "pTimeZoneSelection" capture to the previous time zone value
             .onChange(of: self.dateObservableObject.timeZoneSelection) { [pTimeZoneSelection = self.dateObservableObject.timeZoneSelection] newValue in
                 // Store the previous time zone selection using the "pTimeZoneSelection" capture
                 self.dateObservableObject.previousTimeZoneSelection = pTimeZoneSelection
