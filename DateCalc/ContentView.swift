@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     // Unix epoch time converter
     @ObservedObject private var unixTime = UnixTime(unixTimeText: GetUnixTimeString())
     @ObservedObject private var humanDate = DateObservableObject()
@@ -34,20 +36,32 @@ struct ContentView: View {
                 VStack {
                     
                     // Button to convert from unix time to human readable timestamp
-                    Button {
+                    Button(action: {
                         ConvertUnixTimeToHumanDate()
-                    } label: {
-                        Image(systemName: "arrow.right.circle.fill")
+                    }) {
+                        Image(systemName: "arrow.right.square.fill")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+
                     }
+                    .background(Color(NSColor.windowBackgroundColor))
+                    .foregroundColor(colorScheme == .dark ? Color("DarkButtonBackground") : .accentColor)
+                    .buttonStyle(.plain)
                     .help("Convert to human readable date")
                 
                     // Button to convert from human readable timestamp to unix time
-                    Button {
+                    Button(action: {
                         ConvertHumanDateToUnixTime()
-                    } label: {
-                        Image(systemName: "arrow.left.circle.fill")
+                    }) {
+                        Image(systemName: "arrow.left.square.fill")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+
                     }
-                    .padding(.top, 10)
+                    .background(Color(NSColor.windowBackgroundColor))
+                    .foregroundColor(colorScheme == .dark ? Color("DarkButtonBackground") : .accentColor)
+                    .buttonStyle(.plain)
+                    .padding(.top, 5)
                     .help("Convert to unix time")
                     
                 }
@@ -94,11 +108,17 @@ struct ContentView: View {
                 
                 VStack {
                     
-                    Button {
+                    Button(action: {
                         ConvertTimeZone()
-                    } label: {
-                        Image(systemName: "arrow.right.circle.fill")
+                    }) {
+                        Image(systemName: "arrow.right.square.fill")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+
                     }
+                    .background(Color(NSColor.windowBackgroundColor))
+                    .foregroundColor(colorScheme == .dark ? Color("DarkButtonBackground") : .accentColor)
+                    .buttonStyle(.plain)
                     .help("Convert to human readable date")
                     
                 }
