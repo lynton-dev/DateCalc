@@ -18,9 +18,11 @@ struct ContentView: View {
     @ObservedObject private var inputDate = DateObservableObject()
     @ObservedObject private var outputDate = DateObservableObject()
     @State private var convertedDate = ""
+    @State private var convertedDateTZAbbr = ""
+    @State private var showingTZAbbrPopover = false
     
     @State private var tabSelection = UserDefaults.standard.integer(forKey: "tabSelection")
-    private let columnWidth = 350.0
+    private let minColumnWidth = 375.0
     
     var body: some View {
         
@@ -75,7 +77,7 @@ struct ContentView: View {
                         .padding(.bottom, 10)
                         
                     }
-                    .frame(minWidth: columnWidth)
+                    .frame(minWidth: minColumnWidth)
                     .padding(EdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 75))
                     
                     // Column 2
@@ -88,7 +90,7 @@ struct ContentView: View {
                         }
                         
                     }
-                    .frame(minWidth: columnWidth)
+                    .frame(minWidth: minColumnWidth)
                     .padding(EdgeInsets(top: 0, leading: 75, bottom: 0, trailing: 25))
                     
                 }
@@ -131,7 +133,7 @@ struct ContentView: View {
                         DateTimeZoneView(dateObservableObject: self.inputDate)
                         
                     }
-                    .frame(minWidth: columnWidth)
+                    .frame(minWidth: minColumnWidth)
                     .padding(EdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 75))
                     
                     // Column 2
@@ -142,12 +144,36 @@ struct ContentView: View {
                                 ConvertTimeZone()
                         }
                         
-                        Text(self.convertedDate)
-                            .textSelection(.enabled)
-                            .font(.title2)
-                            .padding(.top, 20)
+                        HStack(alignment: .top) {
+                            
+                            Text(self.convertedDate)
+                                .textSelection(.enabled)
+                                .font(.title2)
+                            
+                            Text(self.convertedDateTZAbbr)
+                                .font(.title2)
+                            
+                            Button(action: {
+                                self.showingTZAbbrPopover.toggle()
+                            }) {
+                                Image(systemName: "questionmark.circle")
+                                    .resizable()
+                                    .frame(width: 10, height: 10)
+                            }
+                            .popover(isPresented: $showingTZAbbrPopover) {
+                                Text(GetTimeZoneOffsetString(timeZone: GetTimeZoneFromCustomIdentifier(customIdentifier: self.outputDate.timeZoneSelection)))
+                                    .padding()
+                            }
+                            .buttonStyle(.plain)
+                            .background(.clear)
+                            .foregroundColor(.gray)
+                            .opacity(self.convertedDate == "" ? 0 : 1)
+                            
+                        }
+                        .padding(.top, 20)
+                        
                     }
-                    .frame(minWidth: columnWidth)
+                    .frame(minWidth: minColumnWidth)
                     .padding(EdgeInsets(top: 0, leading: 75, bottom: 0, trailing: 25))
                     
                 }
@@ -172,35 +198,48 @@ struct ContentView: View {
         })
     }
     
+    
+    /// Convert the unix time to a human readable datetime
     func ConvertUnixTimeToHumanDate() {
         // Set date field. Take into account Time Zone.
         // First get date object based on the unix time text field
         let unixDateTime = Date(timeIntervalSince1970: Double(unixTime.unixTimeText) ?? 0)
         // Then adjust the date to the local time zone. We will always deal with unix time in our local time zone for simplicity.
-        self.humanDate.date = unixDateTime.convert(from: TimeZone.current, to: TimeZone(identifier: self.humanDate.timeZoneSelection) ?? TimeZone.current)
+        self.humanDate.date = unixDateTime.convert(from: TimeZone.current, to: GetTimeZoneFromCustomIdentifier(customIdentifier: self.humanDate.timeZoneSelection))
         
         // Set seconds field
         let calendar = Calendar.current
         self.humanDate.seconds = String(calendar.component(.second, from: self.humanDate.date))
     }
     
+    
+    /// Convert the human readable time to unix time
     func ConvertHumanDateToUnixTime() {
         var calendar = Calendar.current
-        let components = GetComponentsFromDate(dateParam: self.humanDate.date, secondsParam: self.humanDate.seconds, timeZone: TimeZone(identifier: self.humanDate.timeZoneSelection))
-        calendar.timeZone = TimeZone(identifier: self.humanDate.timeZoneSelection) ?? TimeZone.current
+        let timeZone = GetTimeZoneFromCustomIdentifier(customIdentifier: self.humanDate.timeZoneSelection)
+        let components = GetComponentsFromDate(dateParam: self.humanDate.date, secondsParam: self.humanDate.seconds, timeZone: timeZone)
+        calendar.timeZone = timeZone
         self.humanDate.date = calendar.date(from: components) ?? Date()
-        self.unixTime.unixTimeText = GetUnixTimeString(dateParam: self.humanDate.date, fromTimeZone: TimeZone(identifier: self.humanDate.timeZoneSelection) ?? TimeZone.current)
+        self.unixTime.unixTimeText = GetUnixTimeString(dateParam: self.humanDate.date, fromTimeZone: timeZone)
     }
-        
+    
+    
+    /// Convert the input date with a set time zone to an output date of another time zone
     func ConvertTimeZone() {
-        self.outputDate.date = self.inputDate.date.convert(from: TimeZone(identifier: self.inputDate.timeZoneSelection) ?? TimeZone.current, to: TimeZone(identifier: self.outputDate.timeZoneSelection) ?? TimeZone.current)
+        let inputDateTZ = GetTimeZoneFromCustomIdentifier(customIdentifier: self.inputDate.timeZoneSelection)
+        let outputDateTZ = GetTimeZoneFromCustomIdentifier(customIdentifier: self.outputDate.timeZoneSelection)
+        
+        self.outputDate.date = self.inputDate.date.convert(from: inputDateTZ, to: outputDateTZ)
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd hh:mm:ss a"
         formatter.amSymbol = "AM"
         formatter.pmSymbol = "PM"
         self.convertedDate = formatter.string(from: self.outputDate.date)
+        
+        self.convertedDateTZAbbr = outputDateTZ.abbreviation()!
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -209,6 +248,13 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+
+/// Get components of a given date
+/// - Parameters:
+///   - dateParam: date
+///   - secondsParam: seconds
+///   - timeZone: time zone
+/// - Returns: DateComponents object composed of the given parameters
 func GetComponentsFromDate(dateParam: Date, secondsParam: String? = "0", timeZone: TimeZone? = TimeZone.current) -> DateComponents
 {
     var calendar = Calendar.current

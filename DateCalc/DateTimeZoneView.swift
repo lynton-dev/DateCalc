@@ -30,8 +30,8 @@ class DateObservableObject: ObservableObject {
     @Published var date = Date()
     @Published var seconds = "0"
     @Published var previousSeconds = "0"
-    @Published var timeZoneSelection = TimeZone.current.identifier
-    @Published var previousTimeZoneSelection = TimeZone.current.identifier
+    @Published var timeZoneSelection = GetCustomTimeZoneIdentifier()
+    @Published var previousTimeZoneSelection = GetCustomTimeZoneIdentifier()
     
     init() {}
 }

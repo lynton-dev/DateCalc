@@ -61,7 +61,7 @@ struct DateView: View {
         // Ensure to convert to currently selected time zone if not the local time zone
         if (self.dateObservableObject.timeZoneSelection != TimeZone.current.identifier)
         {
-            newDate = newDate.convert(from: TimeZone.current, to: TimeZone(identifier: self.dateObservableObject.timeZoneSelection)!)
+            newDate = newDate.convert(from: TimeZone.current, to: GetTimeZoneFromCustomIdentifier(customIdentifier: self.dateObservableObject.timeZoneSelection))
         }
         
         // Update the date and seconds fields with the new datetime
