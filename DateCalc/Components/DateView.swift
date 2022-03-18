@@ -26,7 +26,7 @@ struct DateView: View {
                 // Seconds field validation
                     if (self.dateObservableObject.seconds.isEmpty || !self.dateObservableObject.seconds.isNumber) {
                         self.dateObservableObject.seconds = "0"
-                    return
+                        return
                 }
                 
                 let secondsInt = Int(self.dateObservableObject.seconds) ?? 0

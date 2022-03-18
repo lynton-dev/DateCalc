@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F83B88127E537BE00098C0C /* UnixTimeConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83B88027E537BE00098C0C /* UnixTimeConverterView.swift */; };
+		4F83B88327E5390D00098C0C /* TimeZoneConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83B88227E5390D00098C0C /* TimeZoneConverterView.swift */; };
+		4F83B88527E539EA00098C0C /* DateCalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83B88427E539EA00098C0C /* DateCalculatorView.swift */; };
 		4FB7E49027D0878B00A99FDE /* DateCalcApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7E48F27D0878B00A99FDE /* DateCalcApp.swift */; };
 		4FB7E49227D0878B00A99FDE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7E49127D0878B00A99FDE /* ContentView.swift */; };
 		4FB7E49427D0878C00A99FDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FB7E49327D0878C00A99FDE /* Assets.xcassets */; };
@@ -19,6 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F83B88027E537BE00098C0C /* UnixTimeConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnixTimeConverterView.swift; sourceTree = "<group>"; };
+		4F83B88227E5390D00098C0C /* TimeZoneConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZoneConverterView.swift; sourceTree = "<group>"; };
+		4F83B88427E539EA00098C0C /* DateCalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCalculatorView.swift; sourceTree = "<group>"; };
 		4FB7E48C27D0878B00A99FDE /* DateCalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DateCalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FB7E48F27D0878B00A99FDE /* DateCalcApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCalcApp.swift; sourceTree = "<group>"; };
 		4FB7E49127D0878B00A99FDE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -43,6 +49,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F83B87F27E5376500098C0C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4FB7E49E27D29C7700A99FDE /* ResetButton.swift */,
+				4FB7E4A027D29E3500A99FDE /* UnixTimeView.swift */,
+				4FB7E4A227D2B4D100A99FDE /* DateTimeZoneView.swift */,
+				4FB7E4A427D2CE0800A99FDE /* TimeZoneView.swift */,
+				4FB7E4A627D2CF1200A99FDE /* DateView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		4FB7E48327D0878B00A99FDE = {
 			isa = PBXGroup;
 			children = (
@@ -62,16 +80,15 @@
 		4FB7E48E27D0878B00A99FDE /* DateCalc */ = {
 			isa = PBXGroup;
 			children = (
+				4F83B87F27E5376500098C0C /* Components */,
 				4FB7E48F27D0878B00A99FDE /* DateCalcApp.swift */,
 				4FB7E49127D0878B00A99FDE /* ContentView.swift */,
 				4FB7E49327D0878C00A99FDE /* Assets.xcassets */,
 				4FB7E49827D0878C00A99FDE /* DateCalc.entitlements */,
 				4FB7E49527D0878C00A99FDE /* Preview Content */,
-				4FB7E49E27D29C7700A99FDE /* ResetButton.swift */,
-				4FB7E4A027D29E3500A99FDE /* UnixTimeView.swift */,
-				4FB7E4A227D2B4D100A99FDE /* DateTimeZoneView.swift */,
-				4FB7E4A427D2CE0800A99FDE /* TimeZoneView.swift */,
-				4FB7E4A627D2CF1200A99FDE /* DateView.swift */,
+				4F83B88027E537BE00098C0C /* UnixTimeConverterView.swift */,
+				4F83B88227E5390D00098C0C /* TimeZoneConverterView.swift */,
+				4F83B88427E539EA00098C0C /* DateCalculatorView.swift */,
 			);
 			path = DateCalc;
 			sourceTree = "<group>";
@@ -112,7 +129,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1330;
 				TargetAttributes = {
 					4FB7E48B27D0878B00A99FDE = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -158,6 +175,9 @@
 				4FB7E4A527D2CE0800A99FDE /* TimeZoneView.swift in Sources */,
 				4FB7E4A727D2CF1200A99FDE /* DateView.swift in Sources */,
 				4FB7E4A327D2B4D100A99FDE /* DateTimeZoneView.swift in Sources */,
+				4F83B88527E539EA00098C0C /* DateCalculatorView.swift in Sources */,
+				4F83B88127E537BE00098C0C /* UnixTimeConverterView.swift in Sources */,
+				4F83B88327E5390D00098C0C /* TimeZoneConverterView.swift in Sources */,
 				4FB7E49F27D29C7700A99FDE /* ResetButton.swift in Sources */,
 				4FB7E49027D0878B00A99FDE /* DateCalcApp.swift in Sources */,
 				4FB7E4A127D29E3500A99FDE /* UnixTimeView.swift in Sources */,
@@ -288,6 +308,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DateCalc/DateCalc.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -315,6 +336,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DateCalc/DateCalc.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
