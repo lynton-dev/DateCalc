@@ -14,6 +14,7 @@ struct TimeZoneConverterView: View {
     @ObservedObject private var tzInputDate = DateObservableObject()
     @ObservedObject private var tzOutputDate = DateObservableObject()
     @State private var tzConvertedDate = ""
+    @State private var tzConvertedDateLong = ""
     @State private var convertedDateTZAbbr = ""
     @State private var showingTZAbbrPopover = false
     
@@ -88,6 +89,15 @@ struct TimeZoneConverterView: View {
                     }
                     .padding(.top, 20)
                     
+                    HStack {
+                        
+                        Text(self.tzConvertedDateLong)
+                            .textSelection(.enabled)
+                            .font(.title3)
+                            .foregroundColor(.gray)
+                        
+                    }
+                    
                 }
                 .frame(minWidth: self.minColumnWidth)
                 .padding(EdgeInsets(top: 0, leading: 75, bottom: 0, trailing: 25))
@@ -110,6 +120,9 @@ struct TimeZoneConverterView: View {
         self.tzConvertedDate = formatter.string(from: self.tzOutputDate.date)
         
         self.convertedDateTZAbbr = outputDateTZ.abbreviation()!
+        
+        formatter.dateFormat = "EEEE, dd MMMM, yyyy"
+        self.tzConvertedDateLong = formatter.string(from: self.tzOutputDate.date)
     }
     
 }
