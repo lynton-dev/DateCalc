@@ -12,7 +12,7 @@ struct DateTimeZoneView: View {
     
     var body: some View {
         VStack {
-            DateView(dateObservableObject: dateObservableObject)
+            DateTimeView(dateObservableObject: dateObservableObject)
             .padding(.bottom, 10)
             
             TimeZoneView(dateObservableObject: dateObservableObject)

@@ -36,9 +36,7 @@ struct ContentView: View {
             .tag(3)
             
             // Tab 4 - Date Difference
-            ZStack(alignment: .center) {
-                
-            }
+            DateDifferenceView()
             .tabItem {
                 Text("Date Difference")
             }

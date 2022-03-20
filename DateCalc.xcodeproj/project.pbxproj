@@ -10,6 +10,9 @@
 		4F83B88127E537BE00098C0C /* UnixTimeConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83B88027E537BE00098C0C /* UnixTimeConverterView.swift */; };
 		4F83B88327E5390D00098C0C /* TimeZoneConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83B88227E5390D00098C0C /* TimeZoneConverterView.swift */; };
 		4F83B88527E539EA00098C0C /* DateCalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83B88427E539EA00098C0C /* DateCalculatorView.swift */; };
+		4F83B88727E6D00D00098C0C /* DateDifferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83B88627E6D00D00098C0C /* DateDifferenceView.swift */; };
+		4F83B88927E6D82100098C0C /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83B88827E6D82100098C0C /* DateView.swift */; };
+		4F83B88B27E7004000098C0C /* ResetTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83B88A27E7004000098C0C /* ResetTextButton.swift */; };
 		4FB7E49027D0878B00A99FDE /* DateCalcApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7E48F27D0878B00A99FDE /* DateCalcApp.swift */; };
 		4FB7E49227D0878B00A99FDE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7E49127D0878B00A99FDE /* ContentView.swift */; };
 		4FB7E49427D0878C00A99FDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FB7E49327D0878C00A99FDE /* Assets.xcassets */; };
@@ -18,13 +21,16 @@
 		4FB7E4A127D29E3500A99FDE /* UnixTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7E4A027D29E3500A99FDE /* UnixTimeView.swift */; };
 		4FB7E4A327D2B4D100A99FDE /* DateTimeZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7E4A227D2B4D100A99FDE /* DateTimeZoneView.swift */; };
 		4FB7E4A527D2CE0800A99FDE /* TimeZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7E4A427D2CE0800A99FDE /* TimeZoneView.swift */; };
-		4FB7E4A727D2CF1200A99FDE /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7E4A627D2CF1200A99FDE /* DateView.swift */; };
+		4FB7E4A727D2CF1200A99FDE /* DateTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7E4A627D2CF1200A99FDE /* DateTimeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4F83B88027E537BE00098C0C /* UnixTimeConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnixTimeConverterView.swift; sourceTree = "<group>"; };
 		4F83B88227E5390D00098C0C /* TimeZoneConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZoneConverterView.swift; sourceTree = "<group>"; };
 		4F83B88427E539EA00098C0C /* DateCalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCalculatorView.swift; sourceTree = "<group>"; };
+		4F83B88627E6D00D00098C0C /* DateDifferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDifferenceView.swift; sourceTree = "<group>"; };
+		4F83B88827E6D82100098C0C /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
+		4F83B88A27E7004000098C0C /* ResetTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetTextButton.swift; sourceTree = "<group>"; };
 		4FB7E48C27D0878B00A99FDE /* DateCalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DateCalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FB7E48F27D0878B00A99FDE /* DateCalcApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCalcApp.swift; sourceTree = "<group>"; };
 		4FB7E49127D0878B00A99FDE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -35,7 +41,7 @@
 		4FB7E4A027D29E3500A99FDE /* UnixTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnixTimeView.swift; sourceTree = "<group>"; };
 		4FB7E4A227D2B4D100A99FDE /* DateTimeZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeZoneView.swift; sourceTree = "<group>"; };
 		4FB7E4A427D2CE0800A99FDE /* TimeZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZoneView.swift; sourceTree = "<group>"; };
-		4FB7E4A627D2CF1200A99FDE /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
+		4FB7E4A627D2CF1200A99FDE /* DateTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +62,9 @@
 				4FB7E4A027D29E3500A99FDE /* UnixTimeView.swift */,
 				4FB7E4A227D2B4D100A99FDE /* DateTimeZoneView.swift */,
 				4FB7E4A427D2CE0800A99FDE /* TimeZoneView.swift */,
-				4FB7E4A627D2CF1200A99FDE /* DateView.swift */,
+				4FB7E4A627D2CF1200A99FDE /* DateTimeView.swift */,
+				4F83B88827E6D82100098C0C /* DateView.swift */,
+				4F83B88A27E7004000098C0C /* ResetTextButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -89,6 +97,7 @@
 				4F83B88027E537BE00098C0C /* UnixTimeConverterView.swift */,
 				4F83B88227E5390D00098C0C /* TimeZoneConverterView.swift */,
 				4F83B88427E539EA00098C0C /* DateCalculatorView.swift */,
+				4F83B88627E6D00D00098C0C /* DateDifferenceView.swift */,
 			);
 			path = DateCalc;
 			sourceTree = "<group>";
@@ -173,14 +182,17 @@
 			files = (
 				4FB7E49227D0878B00A99FDE /* ContentView.swift in Sources */,
 				4FB7E4A527D2CE0800A99FDE /* TimeZoneView.swift in Sources */,
-				4FB7E4A727D2CF1200A99FDE /* DateView.swift in Sources */,
+				4FB7E4A727D2CF1200A99FDE /* DateTimeView.swift in Sources */,
 				4FB7E4A327D2B4D100A99FDE /* DateTimeZoneView.swift in Sources */,
 				4F83B88527E539EA00098C0C /* DateCalculatorView.swift in Sources */,
 				4F83B88127E537BE00098C0C /* UnixTimeConverterView.swift in Sources */,
+				4F83B88927E6D82100098C0C /* DateView.swift in Sources */,
 				4F83B88327E5390D00098C0C /* TimeZoneConverterView.swift in Sources */,
 				4FB7E49F27D29C7700A99FDE /* ResetButton.swift in Sources */,
 				4FB7E49027D0878B00A99FDE /* DateCalcApp.swift in Sources */,
+				4F83B88B27E7004000098C0C /* ResetTextButton.swift in Sources */,
 				4FB7E4A127D29E3500A99FDE /* UnixTimeView.swift in Sources */,
+				4F83B88727E6D00D00098C0C /* DateDifferenceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

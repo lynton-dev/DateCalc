@@ -11,10 +11,10 @@ struct DateCalculatorView: View {
     @Environment(\.colorScheme) var colorScheme
     private let minColumnWidth = 375.0
     
-    @ObservedObject private var calcInputDate = DateObservableObject()
-    @State private var calcConvertedDate = ""
-    @State private var calcConvertedDateLong = ""
-    @State private var calcSelectedOperation = "Add"
+    @ObservedObject private var inputDate = DateObservableObject()
+    @State private var convertedDate = ""
+    @State private var convertedDateLong = ""
+    @State private var selectedOperation = "Add"
     @State private var operators = ["Add", "Subtract"]
     @State private var years = "0"
     @State private var months = "0"
@@ -53,27 +53,24 @@ struct DateCalculatorView: View {
                 // Column 1
                 VStack {
                     
-                    DateView(dateObservableObject: self.calcInputDate)
+                    DateTimeView(dateObservableObject: self.inputDate)
                         .padding(.bottom, 20)
                     
                     Form {
+                        
                         VStack {
-                            
-                            Section() {
                                 
-                                Picker("", selection: $calcSelectedOperation) {
-                                    ForEach(operators, id: \.self) {
-                                        Text($0)
-                                    }
+                            Picker("", selection: $selectedOperation) {
+                                ForEach(operators, id: \.self) {
+                                    Text($0)
                                 }
-                                .onChange(of: self.calcSelectedOperation)  { _ in
-                                    CalculateDate()
-                                }
-                                .pickerStyle(.segmented)
-                                
                             }
+                            .onChange(of: self.selectedOperation)  { _ in
+                                CalculateDate()
+                            }
+                            .pickerStyle(.segmented)
                             .padding(.bottom, 10)
-                            
+                        
                             HStack() {
                                 
                                 Text("Years")
@@ -92,10 +89,8 @@ struct DateCalculatorView: View {
                                     .multilineTextAlignment(.center)
                                     .frame(width: 60)
                             }
-                            
+                        
                             HStack {
-                                
-                                Section() {
                                     
                                     TextField("", text: $years)
                                         .multilineTextAlignment(.center)
@@ -112,12 +107,10 @@ struct DateCalculatorView: View {
                                     TextField("", text: $days)
                                         .multilineTextAlignment(.center)
                                         .frame(width: 60)
-                                        
-                                }
                                 
                             }
                             .padding(.bottom, 5)
-                            
+                        
                             HStack() {
                                 
                                 Text("Hours")
@@ -133,28 +126,24 @@ struct DateCalculatorView: View {
                                     .frame(width: 60)
                                 
                             }
-                            
+                        
                             HStack {
+                                    
+                                TextField("", text: $hours)
+                                    .multilineTextAlignment(.center)
+                                    .frame(width: 60)
                                 
-                                Section() {
-                                    
-                                    TextField("", text: $hours)
-                                        .multilineTextAlignment(.center)
-                                        .frame(width: 60)
-                                    
-                                    TextField("", text: $minutes)
-                                        .multilineTextAlignment(.center)
-                                        .frame(width: 60)
-                                    
-                                    TextField("", text: $seconds)
-                                        .multilineTextAlignment(.center)
-                                        .frame(width: 60)
-                                        
-                                }
+                                TextField("", text: $minutes)
+                                    .multilineTextAlignment(.center)
+                                    .frame(width: 60)
+                                
+                                TextField("", text: $seconds)
+                                    .multilineTextAlignment(.center)
+                                    .frame(width: 60)
                                 
                             }
                             .padding(.bottom, 10)
-                            
+                        
                             HStack {
                                 
                                 Button {
@@ -186,7 +175,7 @@ struct DateCalculatorView: View {
 
                     HStack {
                         
-                        Text(self.calcConvertedDate)
+                        Text(self.convertedDate)
                             .textSelection(.enabled)
                             .font(.title)
                         
@@ -195,7 +184,7 @@ struct DateCalculatorView: View {
                     
                     HStack {
                         
-                        Text(self.calcConvertedDateLong)
+                        Text(self.convertedDateLong)
                             .textSelection(.enabled)
                             .font(.title3)
                             .foregroundColor(.gray)
@@ -213,10 +202,10 @@ struct DateCalculatorView: View {
     func CalculateDate()
     {
         let calendar = Calendar.current
-        var components = GetComponentsFromDate(dateParam: self.calcInputDate.date)
-        components.second = Int(self.calcInputDate.seconds)
+        var components = GetComponentsFromDate(dateParam: self.inputDate.date)
+        components.second = Int(self.inputDate.seconds)
         
-        if (self.calcSelectedOperation == "Add") {
+        if (self.selectedOperation == "Add") {
             components.year! += Int(self.years) ?? 0
             components.month! += Int(self.months) ?? 0
             components.day! += (Int(self.weeks) ?? 0) * 7
@@ -224,7 +213,7 @@ struct DateCalculatorView: View {
             components.hour! += Int(self.hours) ?? 0
             components.minute! += Int(self.minutes) ?? 0
             components.second! += Int(self.seconds) ?? 0
-        } else if (self.calcSelectedOperation == "Subtract") {
+        } else if (self.selectedOperation == "Subtract") {
             components.year! -= Int(self.years) ?? 0
             components.month! -= Int(self.months) ?? 0
             components.day! -= (Int(self.weeks) ?? 0) * 7
@@ -240,10 +229,10 @@ struct DateCalculatorView: View {
         formatter.dateFormat = "yyyy-MM-dd hh:mm:ss a"
         formatter.amSymbol = "AM"
         formatter.pmSymbol = "PM"
-        self.calcConvertedDate = formatter.string(from: outputDate)
+        self.convertedDate = formatter.string(from: outputDate)
         
         formatter.dateFormat = "EEEE, dd MMMM, yyyy"
-        self.calcConvertedDateLong = formatter.string(from: outputDate)
+        self.convertedDateLong = formatter.string(from: outputDate)
     }
     
 }
