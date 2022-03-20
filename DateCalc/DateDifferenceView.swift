@@ -74,23 +74,31 @@ struct DateDifferenceView: View {
                 // Column 2
                 VStack {
                         
-                    self.dateDifferenceDays
-                        .textSelection(.enabled)
-                        .font(.title)
-                        .padding(.bottom, 10)
-                    
-                    Text("or")
-                        .font(.title2)
-                        .foregroundColor(.gray)
-                        .opacity(self.showDateDifference ? 1 : 0)
-                        .padding(.bottom, 10)
-                    
-                    self.dateDifference
-                        .textSelection(.enabled)
-                        .font(.title)
-                        .multilineTextAlignment(.center)
-                        .lineSpacing(10)
-                        .opacity(self.showDateDifference ? 1 : 0)
+                    HStack {
+                        
+                        self.dateDifferenceDays
+                            .textSelection(.enabled)
+                            .font(.title)
+                            .padding(.bottom, 10)
+                            
+                        Spacer()
+                            
+                        Text("or")
+                            .font(.title)
+                            .foregroundColor(.gray)
+                            .opacity(self.showDateDifference ? 1 : 0)
+                            .padding(.bottom, 10)
+                            
+                        Spacer()
+                            
+                        self.dateDifference
+                            .textSelection(.enabled)
+                            .font(.title)
+                            .multilineTextAlignment(.trailing)
+                            .lineSpacing(10)
+                            .opacity(self.showDateDifference ? 1 : 0)
+                        
+                    }
                     
                 }
                 .frame(minWidth: self.minColumnWidth)
