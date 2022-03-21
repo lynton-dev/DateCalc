@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DateView: View {
-    @ObservedObject var dateObservableObject: DateObservableObject
+    @StateObject var dateObservableObject: DateObservableObject
     @State private var dateLong = ""
     
     var body: some View {

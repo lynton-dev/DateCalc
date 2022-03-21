@@ -11,8 +11,8 @@ struct DateDifferenceView: View {
     @Environment(\.colorScheme) var colorScheme
     private let minColumnWidth = 375.0
     
-    @ObservedObject private var inputDate1 = DateObservableObject()
-    @ObservedObject private var inputDate2 = DateObservableObject()
+    @StateObject private var inputDate1 = DateObservableObject()
+    @StateObject private var inputDate2 = DateObservableObject()
     @State private var dateDifference = Text("")
     @State private var dateDifferenceDays = Text("")
     @State private var showDateDifference = false

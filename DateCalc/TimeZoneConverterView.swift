@@ -11,8 +11,8 @@ struct TimeZoneConverterView: View {
     @Environment(\.colorScheme) var colorScheme
     private let minColumnWidth = 375.0
 
-    @ObservedObject private var tzInputDate = DateObservableObject()
-    @ObservedObject private var tzOutputDate = DateObservableObject()
+    @StateObject private var tzInputDate = DateObservableObject()
+    @StateObject private var tzOutputDate = DateObservableObject()
     @State private var tzConvertedDate = ""
     @State private var tzConvertedDateLong = ""
     @State private var convertedDateTZAbbr = ""

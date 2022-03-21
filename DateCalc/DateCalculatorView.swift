@@ -11,7 +11,7 @@ struct DateCalculatorView: View {
     @Environment(\.colorScheme) var colorScheme
     private let minColumnWidth = 375.0
     
-    @ObservedObject private var inputDate = DateObservableObject()
+    @StateObject private var inputDate = DateObservableObject()
     @State private var convertedDate = ""
     @State private var convertedDateLong = ""
     @State private var selectedOperation = "Add"

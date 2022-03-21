@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UnixTimeView: View {
-    @ObservedObject var unixTime: UnixTime
+    @StateObject var unixTime: UnixTime
 
     var body: some View {
         HStack {

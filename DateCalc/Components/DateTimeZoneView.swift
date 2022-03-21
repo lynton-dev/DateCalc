@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DateTimeZoneView: View {
-    @ObservedObject var dateObservableObject: DateObservableObject
+    @StateObject var dateObservableObject: DateObservableObject
     
     var body: some View {
         VStack {
@@ -30,8 +30,8 @@ class DateObservableObject: ObservableObject {
     @Published var date = Date()
     @Published var seconds = "0"
     @Published var previousSeconds = "0"
-    @Published var timeZoneSelection = GetCustomTimeZoneIdentifier()
-    @Published var previousTimeZoneSelection = GetCustomTimeZoneIdentifier()
+    @Published var timeZoneSelection = localCustomTimeZoneIdentifier
+    @Published var previousTimeZoneSelection = localCustomTimeZoneIdentifier
     
     init() {}
 }

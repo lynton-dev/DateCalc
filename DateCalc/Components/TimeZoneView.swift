@@ -7,15 +7,17 @@
 
 import SwiftUI
 
+public let timeZoneIdentifiers = GetCustomKnownTimeZoneIdentifiers()
+public let localCustomTimeZoneIdentifier = GetCustomTimeZoneIdentifier()
+
 struct TimeZoneView: View {
-    @ObservedObject var dateObservableObject: DateObservableObject
-    private let timeZoneIdentifiers = GetCustomKnownTimeZoneIdentifiers()
+    @StateObject var dateObservableObject: DateObservableObject
     
     var body: some View {
         HStack {
             // Select Time Zone
             Picker("Time Zone:", selection: $dateObservableObject.timeZoneSelection) {
-                ForEach(self.timeZoneIdentifiers, id: \.self) {
+                ForEach(timeZoneIdentifiers, id: \.self) {
                     Text($0)
                 }
             }.frame(maxWidth: 350)

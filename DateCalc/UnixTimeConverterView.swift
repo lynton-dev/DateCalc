@@ -11,8 +11,8 @@ struct UnixTimeConverterView: View {
     @Environment(\.colorScheme) var colorScheme
     private let minColumnWidth = 375.0
     
-    @ObservedObject private var unixTime = UnixTime(unixTimeText: GetUnixTimeString())
-    @ObservedObject private var humanDate = DateObservableObject()
+    @StateObject private var unixTime = UnixTime(unixTimeText: GetUnixTimeString())
+    @StateObject private var humanDate = DateObservableObject()
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -72,7 +72,7 @@ struct UnixTimeConverterView: View {
                     DateTimeZoneView(dateObservableObject: self.humanDate)
                     .onAppear() {
                         // Make sure the unix time and this date match up on launch
-                        ConvertUnixTimeToHumanDate()
+                        ConvertHumanDateToUnixTime()
                     }
                     
                 }
