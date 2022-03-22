@@ -163,14 +163,16 @@ struct DateDifferenceView: View {
             
             // Extract the values and units and colorize
             var fullText = Text("")
-            if (!days.isEmpty) {
-                let daysValue = days.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-                let daysUnits = days.components(separatedBy: CharacterSet.decimalDigits).joined().trimmingCharacters(in: .whitespaces)
-                let daysText = Text(daysValue + " ").bold() + Text(daysUnits).foregroundColor(.pink)
-                fullText = fullText + daysText
+            
+            if (!years.isEmpty) {
+                let yearsValue = years.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+                let yearsUnits = years.components(separatedBy: CharacterSet.decimalDigits).joined().trimmingCharacters(in: .whitespaces)
+                let yearsText = Text(yearsValue + " ").bold() + Text(yearsUnits).foregroundColor(.cyan)
+                fullText = yearsText
             }
+            
             if (!months.isEmpty) {
-                if (!days.isEmpty) {
+                if (!years.isEmpty) {
                     fullText = fullText + Text("\n")
                 }
                 let monthsValue = months.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
@@ -178,15 +180,17 @@ struct DateDifferenceView: View {
                 let monthsText = Text(monthsValue + " ").bold() + Text(monthsUnits).foregroundColor(.orange)
                 fullText = fullText + monthsText
             }
-            if (!years.isEmpty) {
-                if (!days.isEmpty || !months.isEmpty) {
+            
+            if (!days.isEmpty) {
+                if (!years.isEmpty || !months.isEmpty) {
                     fullText = fullText + Text("\n")
                 }
-                let yearsValue = years.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-                let yearsUnits = years.components(separatedBy: CharacterSet.decimalDigits).joined().trimmingCharacters(in: .whitespaces)
-                let yearsText = Text(yearsValue + " ").bold() + Text(yearsUnits).foregroundColor(.cyan)
-                fullText = fullText + yearsText
+                let daysValue = days.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+                let daysUnits = days.components(separatedBy: CharacterSet.decimalDigits).joined().trimmingCharacters(in: .whitespaces)
+                let daysText = Text(daysValue + " ").bold() + Text(daysUnits).foregroundColor(.pink)
+                fullText = fullText + daysText
             }
+            
             
             // Update the dateDifference text
             self.dateDifference = fullText
