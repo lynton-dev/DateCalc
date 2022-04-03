@@ -28,6 +28,7 @@ struct UnixTimeConverterView: View {
                     ConvertUnixTimeToHumanDate()
                 }) {
                     Image(systemName: "arrow.right.square.fill")
+                        .symbolRenderingMode(.multicolor)
                         .resizable()
                         .frame(width: 35, height: 35)
 
@@ -42,6 +43,7 @@ struct UnixTimeConverterView: View {
                     ConvertHumanDateToUnixTime()
                 }) {
                     Image(systemName: "arrow.left.square.fill")
+                        .symbolRenderingMode(.multicolor)
                         .resizable()
                         .frame(width: 35, height: 35)
 

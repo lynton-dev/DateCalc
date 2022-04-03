@@ -37,6 +37,7 @@ struct DateCalculatorView: View {
                     CalculateDate()
                 }) {
                     Image(systemName: "arrow.right.square.fill")
+                        .symbolRenderingMode(.multicolor)
                         .resizable()
                         .frame(width: 35, height: 35)
 
