@@ -1,4 +1,10 @@
 # DateCalc MacOS App
+<p align="center">
+  <a href="https://github.com/lynton-dev/LinkedIn-Video-Downloader/releases">
+    <img src="DateCalc/Assets.xcassets/AppIcon.appiconset/DateCalc%20Icon-128.png" />
+  </a>
+</p>
+
 **DateCalc** can perform various calculations and conversions on dates and times. Useful for database managers, programmers, etc. 
 
 ## Features
